@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catequesis San José | Portal Oficial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: url('WhatsApp Image 2026-04-30 at 5.25.15 PM.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .view { min-height: 100vh; transition: all 0.5s ease; }
+        .hidden { display: none !important; }
+        
+        .input-style {
+            width: 100%; padding: 1rem; background: rgba(241, 245, 249, 0.8);
+            border-radius: 1rem; border: 2px solid transparent;
+            font-weight: 700; outline: none; transition: 0.3s;
+        }
+        .input-style:focus { border-color: #6366f1; background: white; }
+
+        .level-btn {
+            width: 85px; height: 85px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.2rem; box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+            border: 4px solid white; cursor: pointer; transition: 0.3s;
+        }
+        .level-btn:hover { transform: scale(1.15) rotate(5deg); }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+    <div id="view-landing" class="view flex flex-col">
+        <nav class="flex justify-between items-center p-6 glass m-4 rounded-[2rem] shadow-2xl sticky top-0 z-50">
+            <div class="flex items-center gap-3">
+                <img src="logo.jpg" class="h-12 w-12 rounded-full shadow-md border-2 border-white">
+                <span class="font-black text-slate-800 text-xl tracking-tighter">SAN JOSÉ <span class="text-orange-600">KIDS</span></span>
+            </div>
+            <button onclick="showView('view-auth')" class="bg-indigo-600 text-white px-8 py-3 rounded-full font-black shadow-lg">ENTRAR</button>
+        </nav>
+
+        <header class="flex-1 flex flex-col items-center justify-center px-6 text-center py-20">
+            <div class="glass p-12 rounded-[4rem] shadow-2xl max-w-4xl animate__animated animate__zoomIn mb-20">
+                <h1 class="text-6xl md:text-8xl font-black text-slate-900 leading-[0.9] mb-8">La fe es una <br><span class="text-indigo-600 italic">aventura.</span></h1>
+                <button onclick="showView('view-auth')" class="bg-orange-500 text-white px-12 py-6 rounded-[2.5rem] font-black text-2xl shadow-[0_12px_0_rgb(194,65,12)] hover:translate-y-2 hover:shadow-none transition-all">¡EMPEZAR!</button>
+            </div>
+
+            <div id="nosotros" class="glass p-10 max-w-5xl w-full flex flex-col md:flex-row items-center gap-12 rounded-[3.5rem] shadow-2xl animate__animated animate__fadeInUp">
+                <div class="relative md:w-1/3">
+                    <img src="catequistas.jpg" class="rounded-[2.5rem] shadow-2xl border-8 border-white rotate-3">
+                </div>
+                <div class="md:w-2/3 text-left">
+                    <h2 class="text-4xl font-black text-slate-800 mb-6 italic">¿Quiénes somos?</h2>
+                    <p class="text-xl text-slate-600 leading-relaxed font-medium mb-6">
+                        Somos el <b>Equipo de Catequesis San José</b>. Un grupo unido por la misión de guiar a los más pequeños en su encuentro con Jesús.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-indigo-50 p-5 rounded-2xl border-l-8 border-indigo-500 shadow-sm">
+                            <p class="text-xs font-black text-indigo-600 uppercase tracking-widest mb-1">Misión</p>
+                            <p class="font-bold text-slate-700">Evangelizar con alegría, creatividad y tecnología.</p>
+                        </div>
+                        <div class="bg-orange-50 p-5 rounded-2xl border-l-8 border-orange-500 shadow-sm">
+                            <p class="text-xs font-black text-orange-600 uppercase tracking-widest mb-1">Visión</p>
+                            <p class="font-bold text-slate-700">Crear una generación llena del Espíritu Santo y amor.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <div id="view-auth" class="view hidden flex items-center justify-center p-6 py-20">
+        <div class="glass p-10 w-full max-w-lg rounded-[3.5rem] shadow-2xl text-center border-4 border-white">
+            <img src="logo.jpg" class="h-20 mx-auto rounded-full mb-4 shadow-lg">
+            <h2 id="auth-title" class="text-3xl font-black text-slate-800 mb-6">Crear Cuenta</h2>
+            <div class="space-y-3 text-left">
+                <div id="extra-fields">
+                    <input type="text" id="reg-name" placeholder="Nombre del niño/a" class="input-style mb-3">
+                    <label class="block text-xs font-black text-slate-500 ml-2 uppercase">Selecciona tu Grupo:</label>
+                    <select id="reg-group" class="input-style cursor-pointer mb-3">
+                        <option value="San Francisco">San Francisco</option>
+                        <option value="San Diego">San Diego</option>
+                        <option value="Santa Rosa">Santa Rosa</option>
+                        <option value="San Antonio">San Antonio</option>
+                        <option value="Santa Clara">Santa Clara</option>
+                    </select>
+                </div>
+                <input type="email" id="reg-email" placeholder="Correo electrónico" class="input-style">
+                <input type="password" id="reg-pass" placeholder="Contraseña" class="input-style">
+                <button id="btn-auth-action" class="w-full bg-indigo-600 text-white py-4 rounded-2xl font-black text-xl shadow-lg hover:bg-indigo-700 transition mt-4">Registrarse</button>
+            </div>
+            <p class="mt-4 text-slate-600 font-bold">
+                <span id="auth-switch-text">¿Ya tienes cuenta?</span> 
+                <button onclick="toggleAuthMode()" id="auth-switch-btn" class="text-indigo-600 underline">Inicia Sesión</button>
+            </p>
+            <button onclick="showView('view-landing')" class="mt-8 text-indigo-600 font-black hover:underline block w-full text-center">← Volver</button>
+        </div>
+    </div>
+
+    <div id="view-dashboard" class="view hidden flex flex-col items-center py-10 px-6">
+        <div class="glass p-6 w-full max-w-2xl flex justify-between items-center mb-10 rounded-[2rem] shadow-xl border-4 border-white">
+            <div class="text-left flex items-center gap-4">
+                <div id="user-avatar" class="h-16 w-16 rounded-full border-4 border-white shadow-lg flex items-center justify-center text-3xl bg-indigo-100 transition-all">👤</div>
+                <div>
+                    <p id="display-greeting" class="text-[10px] font-bold text-indigo-500 uppercase tracking-widest mb-1 italic">¡Hola!</p>
+    
+                    <p id="display-name" class="font-black text-xl text-slate-800 leading-none">Explorador</p>
+    
+                    <div id="display-rank" class="text-[10px] font-black bg-indigo-500 text-white px-2 py-0.5 rounded-md w-fit mt-1 uppercase tracking-tighter shadow-sm">Novicio 🌱</div>
+    
+                    <p id="display-group" class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">Grupo</p>
+    
+                    <div class="flex items-center gap-2 mt-1">
+                        <div class="flex items-center gap-2 bg-yellow-100/50 px-2 py-0.5 rounded-full border border-yellow-200">
+                            <span class="text-sm">🪙</span>
+                            <span id="display-coins" class="font-black text-yellow-700 text-sm">0</span>
+                        </div>
+
+                        <div class="flex items-center gap-2 bg-orange-100/50 px-2 py-0.5 rounded-full border border-orange-200">
+                            <span class="text-sm">🔥</span>
+                            <span id="display-streak" class="font-black text-orange-700 text-sm">0 Días</span>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <div class="flex flex-col items-end gap-2">
+                <button onclick="showView('view-tienda')" class="bg-yellow-400 text-yellow-900 font-black px-4 py-2 rounded-xl shadow-md hover:scale-105 transition-all text-xs w-full">🛒 TIENDA</button>
+                <button onclick="logout()" class="text-red-500 font-black hover:text-red-700 transition-colors text-[10px] uppercase tracking-widest pr-1">Salir</button>
+            </div>
+        </div> 
+
+        <div id="level-map" class="flex flex-col items-center gap-16 pb-10 w-full max-w-2xl">
+            </div>
+
+        <div class="glass p-8 w-full max-w-2xl mt-10 rounded-[2.5rem] shadow-2xl border-4 border-white">
+            <h3 class="text-2xl font-black text-slate-800 mb-6 flex items-center gap-3 italic">🏆 Copa de los Grupos</h3>
+            <div id="ranking-list" class="space-y-4">
+                <p class="text-slate-500 font-bold animate-pulse text-center italic">Cargando posiciones...</p>
+            </div>
+        </div>
+        <div class="h-20"></div>
+    </div>
+
+    <div id="view-game" class="view hidden fixed inset-0 z-[100] p-6 flex flex-col items-center justify-center">
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-xl"></div>
+        <div class="relative glass w-full max-w-3xl p-10 rounded-[3rem] shadow-2xl flex flex-col min-h-[550px]">
+            <div class="flex items-center justify-between mb-8">
+                <button onclick="showView('view-dashboard')" class="text-3xl text-slate-400">✕</button>
+                <div class="flex-1 mx-10 h-4 bg-slate-200 rounded-full overflow-hidden">
+                    <div id="game-progress" class="bg-green-500 h-full w-0 transition-all duration-500"></div>
+                </div>
+            </div>
+            <div id="sentence-area" class="flex-1 flex items-center justify-center text-4xl font-black text-center leading-tight text-slate-800 italic mb-10"></div>
+            <div id="options-area" class="flex flex-wrap justify-center gap-4 mb-8"></div>
+            <button id="btn-verify" class="w-full bg-green-500 text-white py-6 rounded-[2rem] font-black text-2xl shadow-[0_10px_0_rgb(21,128,61)] active:translate-y-2 active:shadow-none transition-all">COMPROBAR ✅</button>
+        </div>
+    </div>
+
+    <div id="view-tienda" class="view hidden flex flex-col items-center py-10 px-6">
+        <div class="w-full max-w-2xl flex justify-between items-center mb-6">
+            <button onclick="showView('view-dashboard')" class="text-slate-500 font-bold">← VOLVER</button>
+            <div class="bg-yellow-100 px-4 py-2 rounded-full border border-yellow-300 font-black text-yellow-700">
+                Mis Monedas: <span id="shop-coins">0</span> 🪙
+            </div>
+        </div>
+        <h2 class="text-4xl font-black text-slate-800 mb-8 italic">Tesorería Real</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-2xl">
+            <div class="glass p-6 rounded-[2rem] text-center border-4 border-white shadow-lg">
+                <div class="text-4xl mb-2">✨</div>
+                <h3 class="font-black text-slate-800">MARCO DE ORO</h3>
+                <button onclick="comprarItem('marcoOro', 100)" class="w-full bg-indigo-600 text-white font-black py-2 rounded-xl mt-4">100 🪙</button>
+            </div>
+            <div class="glass p-6 rounded-[2rem] text-center border-4 border-white shadow-lg">
+                <div class="text-4xl mb-2">👑</div>
+                <h3 class="font-black text-slate-800">TÍTULO: APÓSTOL</h3>
+                <button onclick="comprarItem('tituloApostol', 200)" class="w-full bg-indigo-600 text-white font-black py-2 rounded-xl mt-4">200 🪙</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-victoria" class="hidden fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[10000] flex items-center justify-center p-6">
+        <div class="glass max-w-sm w-full p-8 rounded-[3rem] shadow-2xl border-4 border-white text-center animate__animated animate__zoomIn">
+            <h2 class="text-3xl font-black text-slate-800 mb-2">¡NIVEL LOGRADO!</h2>
+            <div id="modal-estrellas" class="text-5xl mb-6 drop-shadow-lg"></div>
+            <div class="space-y-3 mb-8">
+                <div class="flex justify-between bg-white/50 p-3 rounded-2xl border border-white">
+                    <span class="font-bold text-slate-500">Tiempo:</span>
+                    <span id="modal-tiempo" class="font-black text-indigo-600">0s</span>
+                </div>
+                <div class="flex justify-between bg-white/50 p-3 rounded-2xl border border-white">
+                    <span class="font-bold text-slate-500">Errores:</span>
+                    <span id="modal-errores" class="font-black text-red-500">0</span>
+                </div>
+            </div>
+            <button onclick="cerrarVictoria()" class="w-full bg-indigo-600 text-white font-black py-4 rounded-2xl shadow-lg text-xl">¡CONTINUAR!</button>
+        </div>
+    </div>
+
+    <button id="btn-music" onclick="toggleMusica()" class="fixed bottom-6 right-6 bg-white/90 shadow-2xl border-2 border-slate-200 p-4 rounded-full z-[100] text-2xl">🔇</button>
+
+    <audio id="audio-victory" src="https://assets.mixkit.co/active_storage/sfx/2013/2013-preview.mp3" preload="auto"></audio>
+    <audio id="audio-error" src="https://actions.google.com/sounds/v1/cartoon/boing.ogg" preload="auto"></audio>
+    <audio id="audio-bg" loop src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-17.mp3"></audio>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>

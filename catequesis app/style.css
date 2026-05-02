@@ -1,0 +1,78 @@
+/* Estilos personalizados para efectos de profundidad */
+body {
+    -webkit-font-smoothing: antialiased;
+}
+
+.level-node {
+    margin-left: calc(sin(var(--index) * 2) * 50px); /* Efecto serpiente opcional */
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Estilo para las palabras que el niño selecciona */
+.word-pill {
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-bottom: 5px solid #e2e8f0;
+    padding: 15px 30px;
+    border-radius: 20px;
+    font-weight: 800;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.1s;
+    user-select: none;
+}
+
+.word-pill:active {
+    border-bottom-width: 0px;
+    transform: translateY(5px);
+}
+
+.word-pill.selected {
+    background: #f1f5f9;
+    color: #cbd5e1;
+    border-color: #f1f5f9;
+}
+
+.drop-target {
+    display: inline-block;
+    min-width: 120px;
+    height: 45px;
+    border-bottom: 4px dashed #cbd5e1;
+    vertical-align: middle;
+    margin: 0 10px;
+    color: #4f46e5;
+    font-weight: 900;
+}
+
+/* Animación de carga */
+@keyframes bounce-gentle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+    animation: bounce-gentle 3s ease-in-out infinite;
+}
+
+/* --- EFECTO DE LLUVIA DE MONEDAS --- */
+@keyframes coin-fly {
+    0% { 
+        transform: translateY(0) scale(1); 
+        opacity: 1; 
+    }
+    100% { 
+        transform: translateY(-300px) translateX(100px) scale(0.5); 
+        opacity: 0; 
+    }
+}
+
+.coin-particle {
+    position: fixed;
+    pointer-events: none;
+    animation: coin-fly 1s ease-out forwards;
+    z-index: 9999;
+    font-size: 30px; /* Monedas un poco más grandes para que se vean bien */
+}
