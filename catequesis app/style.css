@@ -1,78 +1,124 @@
-/* Estilos personalizados para efectos de profundidad */
+/* --- BASE DEL JUEGO (Tu versión favorita) --- */
 body {
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
 }
 
+.hidden { display: none !important; }
+
+/* 1. ESTO ES LO QUE FALTABA PARA EL MAPA DE NIVELES */
 .level-node {
-    margin-left: calc(sin(var(--index) * 2) * 50px); /* Efecto serpiente opcional */
+    margin-left: calc(sin(var(--index) * 2) * 50px);
+    transition: all 0.3s ease;
 }
 
-.hidden {
-    display: none !important;
-}
-
-/* Estilo para las palabras que el niño selecciona */
+/* --- ESTILO DE LAS PALABRAS (BOTONES) --- */
 .word-pill {
-    background: white;
+    background: white !important;
+    color: #1e293b !important;
     border: 2px solid #e2e8f0;
-    border-bottom: 5px solid #e2e8f0;
-    padding: 15px 30px;
+    border-bottom: 6px solid #cbd5e1;
+    padding: 12px 24px;
     border-radius: 20px;
     font-weight: 800;
     font-size: 1.5rem;
     cursor: pointer;
     transition: all 0.1s;
     user-select: none;
+    display: inline-block; 
+    height: auto !important;
+    margin: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 .word-pill:active {
     border-bottom-width: 0px;
-    transform: translateY(5px);
+    transform: translateY(6px);
 }
 
 .word-pill.selected {
-    background: #f1f5f9;
-    color: #cbd5e1;
-    border-color: #f1f5f9;
+    background: #f1f5f9 !important;
+    color: #cbd5e1 !important;
+    border-color: #f1f5f9 !important;
+    pointer-events: none;
 }
 
+/* --- HUECOS PARA COMPLETAR --- */
 .drop-target {
     display: inline-block;
     min-width: 120px;
-    height: 45px;
-    border-bottom: 4px dashed #cbd5e1;
+    height: 50px;
+    border-bottom: 5px dashed #6366f1;
     vertical-align: middle;
     margin: 0 10px;
     color: #4f46e5;
     font-weight: 900;
 }
 
-/* Animación de carga */
-@keyframes bounce-gentle {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+/* --- CONTENEDOR DEL JUEGO --- */
+#view-game .glass {
+    background: rgba(255, 255, 255, 0.95) !important;
+    color: #1e293b !important;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
-.animate-float {
-    animation: bounce-gentle 3s ease-in-out infinite;
-}
-
-/* --- EFECTO DE LLUVIA DE MONEDAS --- */
+/* 2. ESTO ES LO QUE FALTABA PARA LA LLUVIA DE MONEDAS */
 @keyframes coin-fly {
-    0% { 
-        transform: translateY(0) scale(1); 
-        opacity: 1; 
-    }
-    100% { 
-        transform: translateY(-300px) translateX(100px) scale(0.5); 
-        opacity: 0; 
-    }
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-300px) translateX(100px) scale(0.5); opacity: 0; }
 }
-
 .coin-particle {
     position: fixed;
     pointer-events: none;
     animation: coin-fly 1s ease-out forwards;
     z-index: 9999;
-    font-size: 30px; /* Monedas un poco más grandes para que se vean bien */
+    font-size: 30px;
+}
+
+/* 3. ESTO ES PARA QUE EL MAPA TENGA ANIMACIÓN */
+@keyframes bounce-gentle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+.animate-float {
+    animation: bounce-gentle 3s ease-in-out infinite;
+}
+
+/* --- AJUSTES PARA CELULARES --- */
+@media (max-width: 640px) {
+    #sentence-area {
+        font-size: 1.8rem !important;
+        line-height: 1.6 !important;
+        padding: 10px !important;
+        margin-bottom: 30px !important;
+        min-height: auto !important;
+    }
+
+    .word-pill {
+        font-size: 1.1rem !important;
+        padding: 10px 18px !important;
+        border-bottom-width: 4px !important;
+        flex: 0 1 auto !important; 
+    }
+
+    #options-area {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 10px !important;
+        height: auto !important;
+    }
+
+    .drop-target {
+        min-width: 80px !important;
+        height: 40px !important;
+    }
+
+    #view-game .glass {
+        padding: 1.5rem !important;
+        margin: 10px !important;
+        border-radius: 2rem !important;
+    }
 }
